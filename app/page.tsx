@@ -1,21 +1,13 @@
-"use client";
-
-import { useFormState } from "react-dom";
-import { formSubmit } from "./action";
-import FormButton from "@/components/form-button";
-import Input from "@/components/form-input";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  const [state, action] = useFormState(formSubmit, null);
   return (
-    <div className="flex mx-auto justify-center items-center w-full h-full max-w-screen-sm">
-      <form className="flex flex-col w-full gap-3 *:outline-none" action={action}>
-        <Input name="email" type="email" required placeholder="Email" errors={state?.error?.fieldErrors.email} />
-        <Input name="username" type="text" required placeholder="Username" errors={state?.error?.fieldErrors.username} />
-        <Input name="password" type="password" required placeholder="Password" errors={state?.error?.fieldErrors.password} />
-        <FormButton />
-        {state?.success ? <span className="w-full h-14 bg-green-400 flex justify-center items-center rounded-xl">{state?.success}</span> : null}
-      </form>
+    <div className="flex flex-col items-center min-h-screen justify-center p-6">
+      <div className="flex flex-col w-full items-center gap-3 *:text-lg *:rounded-full *:py-2.5 *:primary-btn">
+        <Link href="/create-account">Sign up</Link>
+        <Link href="/log-in">Sign in</Link>
+      </div>
     </div>
   );
 }
